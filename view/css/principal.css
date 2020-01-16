@@ -1,0 +1,61 @@
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.card {
+    margin-top: 10px;
+}
+
+.card-title {
+    text-align: center;
+}
+
+.botones {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.modal {
+	background-color: rgba(248, 249, 250);
+	background-image: url(../imagenes/logo_snitch.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.modal-header {
+	border-bottom: none!important;
+}
+
+.modal-footer {
+	border-top: none!important;
+}
+
+.modal-footer div {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+#btnConsulta {
+	margin-right: -10px;
+}
+
+.footer p {
+	color: rgba(255, 255, 255, .75);
+}
+
+.footer i {
+	color: rgba(255,255,255,.75);
+	font-size: 20px;
+}
+
+#cerrarSesion {
+	padding: .75rem;
+}
+
+i#cerrarSesion:focus, i#cerrarSesion:hover {
+    color: #cbd3da!important;
+	cursor: pointer;
+}

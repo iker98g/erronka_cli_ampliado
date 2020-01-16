@@ -1,0 +1,88 @@
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	background-image: url(../imagenes/logo_snitch.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+body p {
+	text-align: justify;
+}
+
+#nombreUsuario {
+	display: none;
+}
+
+.iconoSesion {
+	width: 42px;
+	height: 38px;
+}
+
+body .hidden {
+	display: none;
+}
+
+nav img {
+	width: 50px;
+	height: 50px;
+}
+
+#panelAdmin {
+	text-decoration: none;
+}
+
+a#usuario:focus, a#usuario:hover {
+	cursor: default;
+}
+
+#cerrarSesion {
+	padding: .75rem;
+}
+
+i#cerrarSesion:focus, i#cerrarSesion:hover {
+    color: #cbd3da!important;
+	cursor: pointer;
+}
+
+.modal {
+	background-color: rgba(248, 249, 250);
+	background-image: url(../imagenes/logo_snitch.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.modal-header {
+	border-bottom: none!important;
+}
+
+.modal-footer {
+	border-top: none!important;
+}
+
+.modal-footer div {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+main .jumbotron {
+	background-color: rgba(248, 249, 250, .75);
+}
+
+.footer p {
+	color: rgba(255, 255, 255, .75);
+	text-align: center;
+}
+
+.footer i {
+	color: rgba(255,255,255,.75);
+	font-size: 20px;
+}
+
+.card:hover {
+	border: 1px solid black;
+	cursor: pointer;
+}
