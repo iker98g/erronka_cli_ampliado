@@ -80,7 +80,7 @@ function comprobarUsuario() {
 	
 		$.ajax({
 			data:{'username':username},
-	       	url: "../controller/usuarios/cBuscarUsuario.php", 
+	       	url: "https://cuatro.fpz1920.com/controller/usuarios/cBuscarUsuario.php", 
 	       	dataType:"text",
 	    	success:function(result) {
 	    		if (result==0) {
@@ -101,7 +101,7 @@ function comprobarCorreo() {
 
 	$.ajax({
 		data:{'correo':correo},
-       	url:"../controller/usuarios/cBuscarCorreo.php", 
+       	url:"https://cuatro.fpz1920.com/controller/usuarios/cBuscarCorreo.php", 
        	dataType:"text",
     	success:function(result) {
     		if (result==0) {
@@ -125,7 +125,7 @@ function registrarUsuario() {
 	$.ajax({
 		type:"POST",
 		data:{'nombre':nombre,'correo':correo, 'usuario':usuario,'contrasena':contrasena},
-	   	url:"../controller/usuarios/cInsertUsuarios.php", 
+	   	url:"https://cuatro.fpz1920.com/controller/usuarios/cInsertUsuarios.php", 
 	   	dataType:"text",
 		success:function(result) { 
 	   		alert("Usuario insertado");
@@ -193,7 +193,7 @@ function iniciarSesion() {
 
 		$.ajax({
 			data:{'username':username,'password':password},
-	       	url: "../controller/cSessionVars.php", 
+	       	url: "https://cuatro.fpz1920.com/controller/cSessionVars.php", 
 	       	dataType:"json",
 	    	success: function(result) {
 	    		sesionIniciada(result);
@@ -212,7 +212,7 @@ function iniciarSesion() {
 function comprobarSesion() {
 	$.ajax({
 		data:{},
-       	url:"../controller/cSessionVerVars.php", 
+       	url:"https://cuatro.fpz1920.com/controller/cSessionVerVars.php", 
        	dataType:"json",
     	success:function(result) {
     		if(result!=0) {
@@ -272,7 +272,7 @@ function sesionIniciada(result) {
 function cerrarSesion() {
 	$("#cerrarSesion").click(function() {	
 		$.ajax({
-	       	url:"../controller/cSessionLogout.php", 
+	       	url:"https://cuatro.fpz1920.com/controller/cSessionLogout.php", 
 	       	dataType:"text",
 	    	success:function(result) {  
 	    		alert("Vuelve pronto :)");

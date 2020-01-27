@@ -5,7 +5,7 @@ var miApp=angular.module('miApp',[]);
        $scope.verEntrenadores='no';
        $scope.verTelefono='false';
        
-       $http.get('../controller/cSessionVerVars.php').then(function(data) {
+       $http.get('https://cuatro.fpz1920.com/controller/cSessionVerVars.php').then(function(data) {
   		 console.log(data.data);
   		 if(data.data.admin==0 || data.data.admin==1) {
   			$scope.verTelefono='true';
@@ -14,7 +14,7 @@ var miApp=angular.module('miApp',[]);
 	    }
   	 });
            
-        $http.get('../controller/categorias/cSeleccionarCategorias.php').then(function(data) {     
+        $http.get('https://cuatro.fpz1920.com/controller/categorias/cSeleccionarCategorias.php').then(function(data) {     
                $scope.misdatosJSON = data.data;
                 
                }).catch(function(response){
@@ -29,7 +29,7 @@ var miApp=angular.module('miApp',[]);
     	   $scope.verJugadores='no';
     	   $scope.verEntrenadores='no';
     	   $scope.id= gg;
-    	   $http({url:'../controller/equipos/cEquiposPorCategoria.php',
+    	   $http({url:'https://cuatro.fpz1920.com/controller/equipos/cEquiposPorCategoria.php',
     		   method: "GET",
     		   params:{value:$scope.id}}).then(function(data){
     			 
@@ -48,7 +48,7 @@ var miApp=angular.module('miApp',[]);
     	   $scope.verJugadores='si';
     	   $scope.verEntrenadores='no';
     	   $scope.id= ff;
-    	   $http({url:'../controller/jugadores/cMostrarJugadoresPorEquipo.php',
+    	   $http({url:'https://cuatro.fpz1920.com/controller/jugadores/cMostrarJugadoresPorEquipo.php',
     		   method: "GET",
     		   params:{value:$scope.id}}).then(function(data){
 
@@ -68,7 +68,7 @@ var miApp=angular.module('miApp',[]);
     	   $scope.verEntrenadores='si';
     	   $scope.verJugadores='no';
     	   $scope.id= bb;
-    	   $http({url:'../controller/entrenadores/cMostrarEntrenadoresPorEquipo.php',
+    	   $http({url:'https://cuatro.fpz1920.com/controller/entrenadores/cMostrarEntrenadoresPorEquipo.php',
     		   method:"GET",
     		   params:{value:$scope.id}}).then(function(data){
 
@@ -87,7 +87,7 @@ var miApp=angular.module('miApp',[]);
        $scope.nuevaConsulta=function(){
     	 var consulta=$scope.miConsulta;
     	 var usuario;
-    	 $http.get('../controller/cSessionVerVars.php').then(function(data) {
+    	 $http.get('https://cuatro.fpz1920.com/controller/cSessionVerVars.php').then(function(data) {
     		 console.log(data.data);
     		 if(data.data!=0) {
     		 usuario=data.data.idUsuario;
@@ -99,7 +99,7 @@ var miApp=angular.module('miApp',[]);
         	 misDatosInsert=JSON.stringify(misDatosInsert);
         	 alert(misDatosInsert);
         	 
-        	   $http({url:'../controller/consultas/cInsertConsultaPrincipal.php',
+        	   $http({url:'https://cuatro.fpz1920.com/controller/consultas/cInsertConsultaPrincipal.php',
         		   method: "GET",
         		   params:{datosInsert:misDatosInsert}}).then(function(data){
 
@@ -119,18 +119,16 @@ var miApp=angular.module('miApp',[]);
 	        	 misDatosInsert=JSON.stringify(misDatosInsert);
 	        	 alert(misDatosInsert);
 	        	 
-	        	   $http({url:'../controller/consultas/cInsertConsultaPrincipal.php',
-	        		   method: "GET",
-	        		   params:{datosInsert:misDatosInsert}}).then(function(data){
-	
-	                 }).catch(function(response){
-	              	   console.error('Error ocurred: ',response.status,response.data);
-	              	   
-	          	   }).finally(function(){
-	          		   console.log("Consulta enviada.");
-	          	   });
+	        	 $http({url:'https://cuatro.fpz1920.com/controller/consultas/cInsertConsultaPrincipal.php',
+	        		 method: "GET",
+	        		 params:{datosInsert:misDatosInsert}}).then(function(data){
+        		 }).catch(function(response){
+        			 console.error('Error ocurred: ',response.status,response.data);
+  	   
+        		 }).finally(function(){
+        			 console.log("Consulta enviada.");
+        		 });
 	    	}
-    	 });
-    	 
+    	 }); 	 
        }       
 	}]);     

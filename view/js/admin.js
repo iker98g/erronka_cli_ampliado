@@ -15,8 +15,7 @@ var equipos = [];
 var m;// variable utilizada en frontal para sacar los tipos
 $(document).ready(function(){
 	/*INICIO DE CREAR TABLAS */
-	comprobarSesion();
-	
+	comprobarSesion();	
 	
 	iniciarJAdmin(); //Mostrar datos de la tabla de jugadores por equipos
 
@@ -38,7 +37,7 @@ $(document).ready(function(){
 function comprobarSesion() {
 	$.ajax({
 		data:{},
-       	url:"../controller/cSessionVerVars.php", 
+       	url:"https://cuatro.fpz1920.com/controller/cSessionVerVars.php", 
        	dataType:"json",
     	success:function(result) {
     		sesionIniciada(result);
@@ -59,10 +58,8 @@ function sesionIniciada(result) {
 			newRow+="<i class='fas fa-sign-out-alt' id='cerrarSesion'></i>";
 
 		}else {
-
 			newRow+="<a class='' id='usu'>"+ result.usuario +" </a>";
 			newRow+="<i class='fas fa-sign-out-alt' id='cerrarSesion'></i>";
-
 		}
 		$(".link_Admin_vAdmin").html(newRow);
         
@@ -75,7 +72,7 @@ function sesionIniciada(result) {
 function cerrarSesion() {
 	$("#cerrarSesion").click(function() {	
 		$.ajax({
-	       	url:"../controller/cSessionLogout.php", 
+	       	url:"https://cuatro.fpz1920.com/controller/cSessionLogout.php", 
 	       	dataType:"text",
 	    	success:function(result) {  
 	    		alert("Vuelve pronto :)");
@@ -93,9 +90,9 @@ function cerrarSesion() {
 function iniciarJAdmin(){
 	$.ajax({
         type:"JSON",
-        url:"../controller/jugadores/cSeleccionarJugadores.php",
+        url:"https://cuatro.fpz1920.com/controller/jugadores/cSeleccionarJugadores.php",
         success: function(datosJugadores){
-        	
+        	console.log(datosJugadores);
         	miDatosJugadores=JSON.parse(datosJugadores);
         	ContenidoTablas="";
         	$.each(miDatosJugadores,function(i,datosJugadores){
@@ -162,7 +159,7 @@ function iniciarJAdmin(){
 function iniciarEqAdmin(){
 	$.ajax({
         type:"JSON",
-        url:"../controller/equipos/cSeleccionarEquipos.php",
+        url:"https://cuatro.fpz1920.com/controller/equipos/cSeleccionarEquipos.php",
         success: function(datosEquipos){
 
         	miDatosEquipos=JSON.parse(datosEquipos);
@@ -183,7 +180,7 @@ function iniciarEqAdmin(){
 function iniciarEnAdmin(){
 	$.ajax({
         type:"JSON",
-        url:"../controller/entrenadores/cSeleccionarEntrenadores.php",
+        url:"https://cuatro.fpz1920.com/controller/entrenadores/cSeleccionarEntrenadores.php",
         success: function(datosEntrenadores){
         	
         	miDatosEntrenadores=JSON.parse(datosEntrenadores);
@@ -204,7 +201,7 @@ function iniciarEnAdmin(){
 function iniciarCaAdmin(){
 	$.ajax({
         type:"JSON",
-        url:"../controller/categorias/cSeleccionarCategorias.php",
+        url:"https://cuatro.fpz1920.com/controller/categorias/cSeleccionarCategorias.php",
         success: function(datosCategorias){
         	
         	miDatosCategorias=JSON.parse(datosCategorias);
@@ -225,7 +222,7 @@ function iniciarCaAdmin(){
 function iniciarCoAdmin(){
 	$.ajax({
         type:"JSON",
-        url:"../controller/consultas/cSeleccionarConsultas.php",
+        url:"https://cuatro.fpz1920.com/controller/consultas/cSeleccionarConsultas.php",
         success: function(datosConsultas){
         	
         	miDatosConsultas=JSON.parse(datosConsultas);
@@ -246,7 +243,7 @@ function iniciarCoAdmin(){
 function iniciarUAdmin(){
 	$.ajax({
         type:"JSON",
-        url:"../controller/usuarios/cSeleccionarUsuarios.php",
+        url:"https://cuatro.fpz1920.com/controller/usuarios/cSeleccionarUsuarios.php",
         success: function(datosUsuarios){
         	
         	miDatosUsuarios=JSON.parse(datosUsuarios);
@@ -417,7 +414,7 @@ function generarInserts(){
 					$.ajax({
 				        type:"POST",
 				        data:{"datosInsert":datosInsert},
-				        url:"../controller/"+minusculas+"/cAniadir"+Tabla+".php",
+				        url:"https://cuatro.fpz1920.com/controller/"+minusculas+"/cAniadir"+Tabla+".php",
 				        success: function(datos){
 				        	//console.log(datos);
 							if(LoopTimes==cantidadInsert){
@@ -459,7 +456,7 @@ function generarInserts(){
 				$.ajax({
 			        type:"POST",
 			        data:{"datosInsert":datosInsert},
-			        url:"../controller/"+minusculas+"/cEditar"+Tabla+".php",
+			        url:"https://cuatro.fpz1920.com/controller/"+minusculas+"/cEditar"+Tabla+".php",
 			        success: function(datos){
 			        	console.log(datos);
 			        	$("#formularioInsert").html(`<input type="button" value="Volver a las tablas" class="volverTablas"></input>`);
@@ -492,7 +489,7 @@ function generarCodigoInsert(){
 	$.ajax({
         type:"POST",
         data:{"datosInsert":datosInsert},
-        url:"../controller/"+minusculas+"/cSeleccionar"+Tabla+".php",
+        url:"https://cuatro.fpz1920.com/controller/"+minusculas+"/cSeleccionar"+Tabla+".php",
         success: function(datosTabla){
         	
         	misDatosTabla=JSON.parse(datosTabla);
@@ -686,7 +683,7 @@ function borrarElemento(id,tablita){
 	$.ajax({
         type:"POST",
         data:{"id":id},
-        url:"../controller/"+tablita+"/cBorrar"+Tabla+".php",
+        url:"https://cuatro.fpz1920.com/controller/"+tablita+"/cBorrar"+Tabla+".php",
         success: function(resultado){
         	//console.log(resultado);
 		    location.reload();
@@ -710,7 +707,7 @@ function editarElemento(id,tablita){
 	$.ajax({
       type:"POST",
       data:{"id":id},
-      url:"../controller/"+minusculas+"/cSeleccionar"+Tabla+".php",
+      url:"https://cuatro.fpz1920.com/controller/"+minusculas+"/cSeleccionar"+Tabla+".php",
       success: function(datosTabla){
       	miDatosTabla=JSON.parse(datosTabla);
     	ContenidoTablas="";

@@ -210,7 +210,7 @@ function iniciarSesion() {
 	       	dataType:"json",
 	    	success:function(result) {
 	    		sesionIniciada(result);
-	    		window.location.href="index.html";
+	    		window.location.href="vMvp.html";
 			},
 	       	error:function(xhr) {
 	   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
@@ -228,7 +228,6 @@ function comprobarSesion() {
        	url:"https://cuatro.fpz1920.com/controller/cSessionVerVars.php", 
        	dataType:"json",
     	success:function(result) {
-    		console.log(result);
     		if(result!=0) {
     			sesionIniciada(result);
         		insertarConsulta(result);
@@ -253,7 +252,7 @@ function sesionIniciada(result) {
 		if (result.admin==0) {
 			newRow+="<ul class='navbar-nav mr-auto'>";
 	        newRow+="<li class='nav-item'>";
-	        newRow+="<a class='nav-link text-light' id='panelAdmin' href='view/vAdmin.html'>Panel Admin</a>";
+	        newRow+="<a class='nav-link text-light' id='panelAdmin' href='vAdmin.html'>Panel Admin</a>";
 			newRow+="</li>";
 			newRow+="<li class='nav-item'>";
 			newRow+="<a class='nav-link text-light' id='usuario'>"+ result.usuario +" </a>";
@@ -293,7 +292,7 @@ function cerrarSesion() {
 	       	dataType:"text",
 	    	success:function(result) {  
 	    		alert("Vuelve pronto :)");
-	    		window.location.href="index.html";
+	    		window.location.href="vMvp.html";
 			},
 	       	error:function(xhr) {
 	   			alert("An error occured: " + xhr.status + " " + xhr.statusText);

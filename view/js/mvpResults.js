@@ -20,6 +20,8 @@ $(document).ready(function() {
 	iniciarSesion();
 
 	cerrarSesion();
+	
+	masVotados();
 });
 
 function modificarJumbotron() {
@@ -210,7 +212,7 @@ function iniciarSesion() {
 	       	dataType:"json",
 	    	success:function(result) {
 	    		sesionIniciada(result);
-	    		window.location.href="index.html";
+	    		window.location.href="vMvpResults.html";
 			},
 	       	error:function(xhr) {
 	   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
@@ -253,7 +255,7 @@ function sesionIniciada(result) {
 		if (result.admin==0) {
 			newRow+="<ul class='navbar-nav mr-auto'>";
 	        newRow+="<li class='nav-item'>";
-	        newRow+="<a class='nav-link text-light' id='panelAdmin' href='view/vAdmin.html'>Panel Admin</a>";
+	        newRow+="<a class='nav-link text-light' id='panelAdmin' href='vAdmin.html'>Panel Admin</a>";
 			newRow+="</li>";
 			newRow+="<li class='nav-item'>";
 			newRow+="<a class='nav-link text-light' id='usuario'>"+ result.usuario +" </a>";
@@ -293,7 +295,7 @@ function cerrarSesion() {
 	       	dataType:"text",
 	    	success:function(result) {  
 	    		alert("Vuelve pronto :)");
-	    		window.location.href="index.html";
+	    		window.location.href="vMvpResults.html";
 			},
 	       	error:function(xhr) {
 	   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
@@ -341,5 +343,89 @@ function insertarConsultaSinSesion(result) {
 	   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
 	   		}
 		}); 
+	});
+}
+
+function masVotados() {
+	$.ajax({
+		data:{},
+       	url: "https://cuatro.fpz1920.com/controller/votos/cSeleccionarVotos.php", 
+       	dataType:"json",
+    	success:function(result) {
+    		console.log(result);
+    		
+    		countGlobal=0;
+    		countJunior=0;
+    		countSenior=0;
+    		countMaster=0;
+    		
+    		if (result != null) {
+    			//generar cards de jugadores mas votados
+    			newRowJunior="";
+    			newRowSenior="";
+    			newRowMaster="";
+    			
+    			for(i=0; i<result.length; i++) {
+    				if(countGlobal < 10) {
+    					if(result[i].idCategoria==1 && countJunior < 3) {
+    						countJunior++;
+    						
+        					newRowJunior+="<div class='col-xs-12 col-sm-12 col-md-4 col-lg-4'>";
+        			        newRowJunior+="<div class='card mb-4 shadow-sm'>";
+        			        newRowJunior+="<div class='card-body'>";
+        					newRowJunior+="<h3 class='card-title'>#"+countJunior+"</h3>";
+        					newRowJunior+="<img src="+result[i].objectJugador.imagen+" width='125px' height='125px'>";
+        					newRowJunior+="<h4>"+result[i].objectJugador.nombre+"</h4>";
+        					newRowJunior+="<h4>"+result[i].objectJugador.rol+"</h4>";
+        					newRowJunior+="<h5>"+result[i].idVoto+" voto(s)</h5>";
+        					newRowJunior+="</div>";
+        					newRowJunior+="</div>";
+        					newRowJunior+="</div>";
+        					
+        					$("#votosJunior").html(newRowJunior);
+
+            		    }else if(result[i].idCategoria==2 && countSenior < 3) {
+        					countSenior++;
+        					
+        					newRowSenior+="<div class='col-xs-12 col-sm-12 col-md-4 col-lg-4'>";
+        			        newRowSenior+="<div class='card mb-4 shadow-sm'>";
+        			        newRowSenior+="<div class='card-body'>";
+        			        newRowSenior+="<h3 class='card-title'>#"+countSenior+"</h3>";
+        			        newRowSenior+="<img src="+result[i].objectJugador.imagen+" width='125px' height='125px'>";
+        					newRowSenior+="<h4>"+result[i].objectJugador.nombre+"</h4>";
+        					newRowSenior+="<h4>"+result[i].objectJugador.rol+"</h4>";
+        			        newRowSenior+="<h5>"+result[i].idVoto+" voto(s)</h5>";
+        					newRowSenior+="</div>";
+        					newRowSenior+="</div>";
+        					newRowSenior+="</div>";
+        					
+        					$("#votosSenior").html(newRowSenior);
+            		    }else if(result[i].idCategoria==3 && countMaster < 3) {
+        					countMaster++;
+        					
+        					newRowMaster+="<div class='col-xs-12 col-sm-12 col-md-4 col-lg-4'>";
+        			        newRowMaster+="<div class='card mb-4 shadow-sm'>";
+        			        newRowMaster+="<div class='card-body'>";
+        			        newRowMaster+="<h3 class='card-title'>#"+countMaster+"</h3>";
+        			        newRowMaster+="<img src="+result[i].objectJugador.imagen+" width='125px' height='125px'>";
+        					newRowMaster+="<h4>"+result[i].objectJugador.nombre+"</h4>";
+        					newRowMaster+="<h4>"+result[i].objectJugador.rol+"</h4>";
+        			        newRowMaster+="<h5>"+result[i].idVoto+" voto(s)</h5>";
+        					newRowMaster+="</div>";
+        					newRowMaster+="</div>";
+        					newRowMaster+="</div>";
+        					
+        					$("#votosMaster").html(newRowMaster);
+            		    }
+    					countGlobal++;
+    				}else {
+    					i=result.length;
+    				}   				
+    			}    			
+    		}
+		},
+       	error:function(xhr) {
+   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
+   		}
 	});
 }

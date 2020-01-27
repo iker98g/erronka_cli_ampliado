@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+<head>
+	<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  	<title>Zornotza Quidditch</title>
+  
+  	<link rel="icon" type="image/png" href="imagenes/favicon.ico">
+  	<link href="css/mvp.css" rel="stylesheet" type="text/css" />
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+  	<script src="https://kit.fontawesome.com/661afcc94b.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
+  
+  	<script src="js/mvp.js"></script>
+  	<script src="js/mvpSesion.js"></script>
+</head>
+<body>
+<header>
+  	<!-- NAV -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="vMvp.html"><img src="imagenes/logo_snitch.png" style="width: 50px; height: 50px"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link text-light" href="../index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="vPrincipal.html">Equipos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="vMvpResults.html">Resultados MVP</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="#" data-toggle="modal" data-target="#examModal">Contáctanos</a>
+          </li>
+        </ul>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group mr-2 sesion" role="group" aria-label="First group">
+            <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#registroModal">Regístrate</button>
+          </div>
+          <div class="btn-group mr-2 sesion" role="group" aria-label="Second group">
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#sesionModal">Iniciar Sesión</button>
+          </div>
+          <div id="nombreUsuario" class="btn-group mr-2 text-light dropdown dropleft" role="group" aria-label="Third group">
+          	<!-- AQUI VA EL CODIGO DE LOS BOTONES DE SESIÓN QUE SE CREAN EN EL INDEX.JS -->
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- FIN NAV -->
+    
+    <!-- MODAL DE VALORACIÓN -->
+	<div class="modal fade"  id="examModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Contáctanos</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" ng-controller="miControlador" >
+					<form>
+						<div class="form-group" >
+							<h6>Consulta</h6>
+							<textarea class="form-control" id="exampleFormControlTextarea1" ng-model="miConsulta" rows="3"></textarea>
+						</div>
+						<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" id="btnConsulta" ng-click="nuevaConsulta()" data-dismiss="modal" disabled>Enviar consulta</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- FIN MODAL VALORACIÓN -->
+      
+    <!-- MODAL REGISTRO -->
+    <div class="modal fade" id="registroModal" tabindex="-1" role="dialog" aria-labelledby="modalInsertUserlabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalInsertUserlabel">Regístrate</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="post">
+            	<div class="row form-group">
+                  <div class="col">
+                    <label for="nombreFormInsert">Nombre</label> 
+                    <input type="text" class="form-control datoRegistro" id="nombreFormInsert" aria-describedby="nombreInsert">
+                  </div>
+                  <div class="col">
+                  	<label for="emailFormInsert">Email</label>
+                    <input type="email" class="form-control datoRegistro" id="emailFormInsert" aria-describedby="emailInsert">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="usuarioFormInsert">Usuario</label>
+                    <input type="text" class="form-control datoRegistro" id="usuarioFormInsert" aria-describedby="usuarioInsert">
+                </div>
+                <div class="form-group">
+                    <label for="passwordFormInsert">Contraseña</label>
+                    <input type="password" class="form-control datoRegistro" id="passwordFormInsert" aria-describedby="passwordInsert">
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" id="btnRegistro" class="btn btn-secondary botonExecuteInsertUsers" data-dismiss="modal" disabled>Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FIN MODAL REGISTRO -->
+
+    <!-- MODAL INICIO SESIÓN -->
+    <div class="modal fade bd-example-modal-sm" id="sesionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel">Iniciar Sesión</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <form class="cardLogin">
+                <div class="form-group input-group">
+                	<div class="input-group-append">
+						<span class="iconoSesion input-group-text rounded-left"><i class="fas fa-user"></i></span>
+					</div>
+                  	<input type="text" class="form-control datoSesion" id="username" placeholder="Usuario"> 
+                </div>
+                <div class="form-group input-group">
+                	<div class="input-group-append">
+						<span class="iconoSesion input-group-text rounded-left"><i class="fas fa-key"></i></span>
+					</div>
+                  	<input type="password" class="form-control datoSesion" id="password" aria-describedby="passHelp" placeholder="Contraseña">
+                </div>
+                <div>
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input datoSesion" id="customControlInline">
+						<label class="custom-control-label" for="customControlInline">No soy un Muggle</label>
+					</div>
+				</div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="form-group text-center w-100">
+              <button type="button" class="btn btn-secondary w-100" id="btnLogin" data-dismiss="modal" disabled>Iniciar Sesión</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FIN MODAL INICIO SESIÓN -->
+	</header>
+	<main>
+		<!-- JUMBOTRON -->
+	    <section class="jumbotron jumbotron-fluid mb-0">
+			<div class="container">
+	        	<h1 class="display-4">VOTA TU MEJOR JUGADOR</h1>
+	        	<p class="lead">Aquí podrás votar al mejor jugador de cada categoría.
+	        	Para votar es obligatoria estar registrado en nuestra página web.
+	        	Solo puedes votar una vez por categoía. Asegúrate de elegir bien, ya que, 
+	        	una vez hagas tu elección no podrás cambiarla.        	
+		        </p>
+	      	</div>
+	    </section>
+	    <!-- FIN JUMBOTRON -->
+	    
+	    <!--  //MOSTRAR CATEGORIAS -->    
+	   	<div ng-controller="miControlador">  	
+			<!--  ////MOSTRAR CATEGORIAS////// -->
+	        <div class="album">
+	  	 		<div class="container">
+	        		<div class="row mt-5">
+			        	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" ng-repeat="dato in misdatosJSON">
+		            		<div class="card mb-4 shadow-sm" id="{{dato.idCategoria}}" ng-click="mostrarEquipos(dato.idCategoria)">
+		              			<div class="card-body">
+		                			<h5 class="card-title">{{dato.nombre}}</h5>
+		                			<img src="{{dato.imagen}}" class="img-card">
+		              			</div>	         
+		            		</div>
+		            		<div class="img-gracias">
+	            				<img src="imagenes/gracias.png" class="img-card">
+	            			</div>
+						</div>
+	     			</div>
+		
+					<!-- //MOSTRAR EQUIPOS,JUGADORES Y ENTRENADORES -->
+			        <div class="categoria"> 
+			         	<div ng-show="ver=='si'" ng-repeat="datos in misEquipos" class="seleccionar_categoria">
+			               	<h2>{{datos.nombre}}</h2>
+			               	<img src="{{datos.logo}}" class="logo">
+			               	<a href="" id="{{datos.idEquipo}}" ng-click="mostrarJugadores(datos.idEquipo, idCategoria)" class="btn btn-dark">Ver jugadores</a>
+						</div>
+			        </div>		        
+					<div class="row mt-3">
+						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-show="verJugadores=='si'" ng-repeat="datos in misJugadores">    		
+							<div ng-click="botonVotar(datos.idJugador, datos.nombre, datos.idEquipo, idCategoria)" class="card mb-4 shadow-sm">
+			            		<div class="card-body">
+									<img src="{{datos.imagen}}" class="img-card img-card-player">
+									<h3 class="card-title">{{datos.nombre}}</h3>
+									<h3 ng-show="verTelefono=='true'">{{datos.telefono}}</h3>
+									<h4>{{datos.rol}}</h4>
+								</div>
+							</div>
+			          	</div>
+					</div>
+				</div>
+		    </div>
+		    
+		    <!-- MODAL VOTACIÓN -->
+	   		<div id="myModal" class="modal modalVoto">
+				<div class="modal-content-voto">
+					<h5 class="card-title">CONFIRMA TU VOTO</h5>
+					<p>¿Estás seguro de que quieres votar por <b>{{nombre}}</b>?</p>
+	            	<input type="button" class="boton" id="{{idJugador}}" ng-click="votar(idJugador, idCategoria)" value="Votar">
+	            	<input type="button" class="boton" ng-click="CancelarVoto()" value ="Cancelar">
+    			</div>
+			</div>
+        	<!-- FIN MODAL VOTACIÓN -->
+	    </div>
+	</main>
+	
+	<!-- FOOTER -->
+  	<footer class="footer text-muted text-center bg-secondary">
+    	<ul class="list-inline pt-3">
+      		<li class="list-inline-item"><a href="https://es-es.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+        	<li class="list-inline-item"><a href="https://twitter.com/?lang=es"><i class="fab fa-twitter"></i></a></li>
+        	<li class="list-inline-item"><a href="https://www.instagram.com/?hl=es"><i class="fab fa-instagram"></i></a></li>
+        	<li class="list-inline-item"><a href="https://www.youtube.com/?gl=ES&hl=es"><i class="fab fa-youtube"></i></a></li>
+        	<li class="list-inline-item"><a href="https://support.google.com/plus/?hl=es-419#topic=9259565"><i class="fab fa-google-plus-g"></i></a></li>
+    	</ul>
+    	<p class="px-1 pb-2 mb-0">&copy; Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla maiores ipsam in inventore voluptatibus. Labore, provident. Quos ratione accusantium facere? Rem assumenda, a adipisci possimus repudiandae ipsam mollitia debitis architecto.</p>
+  	</footer>
+  	<!-- FIN FOOTER --> 
+</body>
+</html>

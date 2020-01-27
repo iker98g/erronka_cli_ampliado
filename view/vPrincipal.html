@@ -18,14 +18,14 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     	
         <script src="js/principal.js" type="text/javascript"></script>
-        <script src="js/sesion.js" type="text/javascript"></script>
+        <script src="js/principalSesion.js" type="text/javascript"></script>
     </head>
     <body>
-    	<header>
-  <!-- NAV -->
+    <header>
+  	<!-- NAV -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="vPrincipal.html"><img src="imagenes/logo_snitch.png" style="width: 50px;
-	height: 50px"></a>
+		height: 50px"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -33,6 +33,12 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link text-light" href="../index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="vMvp.html">MVP Awards</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="vMvpResults.html">Resultados MVP</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-light" href="#" data-toggle="modal" data-target="#examModal">Contáctanos</a>
@@ -201,8 +207,7 @@
           	</div>
           
           <div style="display:inline-block" ng-repeat="dato in misdatosJSON ">
-          <div class="row">
-       
+          <div class="row">    
           
             <div class="card" style="width: 20rem; margin: 20px;">
               
@@ -238,7 +243,7 @@
 
 			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"  ng-show="verJugadores=='si'"  ng-repeat="datos in misJugadores" style="text-align: center">
 				<div style="display:inline-block">
-					<img src="{{datos.imagen}}" width="200px" height="150px" alt="..." >
+					<img src="{{datos.imagen}}" width="200px" height="150px" alt="...">
 					<h2>{{datos.nombre}}</h2>
 					<h2 ng-show="verTelefono=='true'">{{datos.telefono}}</h2>
 					<h3 style="color: blue">{{datos.rol}}</h3>
